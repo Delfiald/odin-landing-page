@@ -16,6 +16,7 @@ body {
   line-height: 1.4;
   background: var(--primary-color);
   overflow-x: hidden;
+  background: #f5f5f5;
 }
 
 /* Utilities */
@@ -26,6 +27,7 @@ ul {
 a {
   display: inline-block;
   text-decoration: none;
+  color: #f4f4f4;
 }
 
 .btn {
@@ -33,10 +35,12 @@ a {
   border-radius: 10px;
   padding: 1rem 2rem;
   cursor: pointer;
+  color: #f4f4f4;
 }
 
 .xl-heading {
   font-size: 4rem;
+  font-weight: 700;
 }
 
 .l-heading {
@@ -51,18 +55,32 @@ a {
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background: var(--primary-color);
-  color: #333;
+  color: #f4f4f4;
+  animation: hero .5s ease forwards;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20vh;
+  left: 0;
+  width: inherit;
+  height: 100vh;
+  background: var(--secondary-color);
+  z-index: -1;
+  transform: skewY(-15deg);
 }
 
 .navbar {
   position: absolute;
   top: 0;
+  left: 0;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: inherit;
   height: 70px;
   padding: 1rem 2rem;
+  background: var(--secondary-color);
 }
 
 .navbar .logo {
@@ -79,72 +97,258 @@ a {
 }
 
 .hero-content {
+  width: 100%;
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 2rem;
+}
+
+.hero-content > div {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 75vh;
+}
+
+.hero-content .hero-heading > div {
+  flex: 1 1 auto;
+}
+
+.hero-content .hero-heading > div:first-child {
+  flex: 2;
+  align-content: flex-end;
+}
+
+.hero-content .hero-heading .scroll-down {
+  margin-top: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: scroll-down 1.5s ease 1.5s forwards;
+}
+
+.hero-content .hero-heading .scroll-down::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  width: 2px;
+  height: 0;
+  background: var(--primary-color);
+  animation: scroll-down-line 1s ease 2s forwards;
+  opacity: 0;
+  border-radius: 5px;
+}
+
+.hero-content > div:nth-child(2) img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  opacity: 0;
+  animation: main-image 1s ease 1s forwards;
+}
+
+/* Main */
+.content-section {
+  position: relative;
+  padding: 1rem 2rem;
 }
 
 .container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background: var(--secondary-color);
-  color: #f4f4f4;
-}
-
-.container.light {
+  margin: 2rem;
+  padding: 2rem;
+  height: inherit;
+  border: 1px solid #ccc;
   background: var(--primary-color);
-  color: #333;
+  border-radius: 10px;
 }
 
 .container .row {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
   gap: 1rem;
 }
 
-.container .row .column {
-  border: 1px solid #ccc;
+.column-1,
+.column-2 {
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
-  text-align: center;
 }
 
-/* Contact */
-.action .container {
-  gap: 1rem;
-}
-
-.action .container .btn {
-  position: relative;
-  color: #f4f4f4;
-  border: 1px solid #ccc;
-  transition: .5s all ease;
-}
-
-.action .container .btn:hover {
-  background: var(--primary-color);
-  color: #333;
-  transform: scale(1.05);
-}
-
-/* Footer */
-.footer-container {
+.column-1 {
   padding: 1rem;
-  color: #fff;
-  background: var(--secondary-color);
+  height: 90vh;
+  position: sticky;
+  top: 5vh;
+}
+
+.column-1 img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.column-2 {
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.column-2 > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.column-2 p {
+  font-size: 1.5rem;
+}
+
+/* Action */
+.action {
+  margin-top: 2rem;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 3px solid #333;
+  text-align: center;
+}
+
+.action > div {
+  align-content: center;
+  height: 100%;
+  padding: 3rem;
+  flex: 1;
+}
+
+.action > div:nth-child(2) {
+  position: relative;
+  overflow: hidden;
+}
+
+.action .btn {
+  background-color: var(--secondary-color);
+}
+
+.action > div:nth-child(2) {
+  color: #f4f4f4;
+  position: relative;
+  background: var(--secondary-color);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.action > div:nth-child(2) > div {
+  width: 100%;
+  height: inherit;
+}
+
+.action > div:nth-child(2) > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 50vh;
+  transform-origin: top left;
+  background: #f4f4f4;
+  transform: skewY(-25deg);
+  z-index: 2;
+}
+
+.action > div:nth-child(2) > div > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.action > div:nth-child(2) > div > div > div {
+  position: relative;
+  text-align: center;
+}
+
+.action > div:nth-child(2) > div > div > div > h2:last-child {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transition: .5s all ease;
+}
+
+.action > div:nth-child(2) > div > div > div > h2:first-child {
+  transition: .5s all ease;
+}
+
+.action > div:nth-child(2) > div > div:hover > div > h2:last-child {
+  opacity: 1;
+}
+
+.action > div:nth-child(2) > div > div:hover > div > h2:first-child {
+  opacity: 0;
+}
+
+@keyframes hero {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes main-image {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-down {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-down-line {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+
+  to {
+    height: 120%;
+    opacity: 1;
+  }
 }

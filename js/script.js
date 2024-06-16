@@ -41,9 +41,6 @@ const run = () => {
     if (isInViewport(skill)) {
       skillsContainer.classList.add('show');
     }
-    else {
-      skillsContainer.classList.remove('show');
-    }
   });
 };
 

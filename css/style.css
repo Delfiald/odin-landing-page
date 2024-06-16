@@ -173,7 +173,7 @@ a {
   margin: 2rem auto;
   padding: 2rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 90vw;
   height: inherit;
   border: 1px solid #ccc;
   background: var(--primary-color);
@@ -238,38 +238,12 @@ a {
   height: 80vh;
 }
 
-/* .column-1::before {
-  padding: 1rem;
-  content: '';
-  position: absolute;
-  top: -1rem;
-  right: -1rem;
-  width: 0;
-  height: 100%;
-  border-right: 2px solid #ccc;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-  border-radius: 15px;
-  opacity: 0;
-  transform: scaleY(0);
-  animation: image-box 2s ease .5s forwards;
-}
-
-.column-2 > div::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  height: 2px;
-  width: 0;
-  max-width: 33px;
-  background: #ccc;
-  opacity: 0;
-  animation: image-box-bar 1s ease forwards;
-} */
-
 .column-2 p {
   font-size: 1.5rem;
+}
+
+.column-2 img {
+  display: none;
 }
 
 /* Skills */
@@ -293,12 +267,11 @@ a {
 }
 
 .skills > div {
-  flex: 1 1 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  text-align: center;
   gap: 2rem;
   position: relative;
   transition: all .5s ease;
@@ -306,6 +279,20 @@ a {
 
 .skills > div > .skill {
   opacity: 0;
+  flex: 1 1 auto;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.skills .skill .btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .skills > .show > .skill:nth-child(1) {
@@ -395,15 +382,14 @@ a {
   width: 100%;
   height: 100%;
   background: var(--secondary-color);
-  transition: all 0.5s ease;
   z-index: 0;
-  /* border-radius: 9px; */
   transform-origin: top;
   transform: scaleY(0);
   opacity: 0;
   pointer-events: none;
   border-radius: 10px;
   border: 1px solid var(--secondary-color);
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .action .call-to-action > div .btn:hover::before {
@@ -595,5 +581,166 @@ a {
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@media (max-width: 1100px) {
+  .xl-heading {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .xl-heading,
+  .l-heading {
+    font-size: 2rem;
+  }
+
+  .hero-content {
+    gap: 1rem;
+  }
+
+  .content-section .column-1 {
+    top: 10vh;
+    height: 80vh;
+  }
+
+  .content-section p {
+    font-size: 1rem;
+  }
+
+  .skills .skill i {
+    font-size: 4rem;
+  }
+
+  .action {
+    height: 80vh;
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .action .call-to-action {
+    width: 100%;
+    padding: 0;
+  }
+
+  .action .call-to-action div {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .action .call-to-action div h2,
+  .action .call-to-action div .btn {
+    margin: 1rem;
+    flex: 1 1 100%;
+    align-self: center;
+  }
+
+  .action div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+
+  .action div:nth-child(2) > div > div {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .action div:nth-child(2) > div::before {
+    display: none;
+  }
+
+  .action div:nth-child(2) > div > div > div {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    gap: 1rem;
+  }
+
+  .action div:nth-child(2) > div > div > div > h2 {
+    flex: 1 1 100%;
+    align-content: flex-end;
+  }
+
+  .action > div:nth-child(2) > div > div {
+    pointer-events: none;
+  }
+
+  .action > div:nth-child(2) > div > div > div > h2:last-child {
+    position: static;
+    align-content: flex-start;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .xl-heading, .l-heading {
+    font-size: 1.5rem;
+  }
+
+  .hero::before {
+    top: -1rem;
+  }
+
+  .hero-content {
+    margin-top: 150px;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content > div {
+    height: 50vh;
+  }
+
+  .hero-content .hero-heading > div {
+    flex-basis: 100%;
+  }
+
+  .column-1 {
+    display: none;
+  }
+
+  .column-2 {
+    gap: 50px;
+    padding: 1rem 0;
+  }
+
+  .column-2 > div {
+    align-items: center;
+    height: 100%;
+  }
+
+  .column-2 > div img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .column-2 > div p {
+    font-size: 14px;
+  }
+
+  .skills-container,
+  .skills-container .skills {
+    padding: 0 1rem;
+  }
+
+  .skills-container .skills .skill {
+    width: 100%;
+    max-width: 100px;
+  }
+
+  .skills-container .skills .skill h2 {
+    font-size: 16px;
+  }
+
+  .footer h2 {
+    font-size: 1rem;
+    margin: 1rem;
   }
 }
